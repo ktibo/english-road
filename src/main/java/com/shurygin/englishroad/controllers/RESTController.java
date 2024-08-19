@@ -1,6 +1,6 @@
 package com.shurygin.englishroad.controllers;
 
-import com.shurygin.englishroad.model.Question;
+import com.shurygin.englishroad.dto.Question;
 import com.shurygin.englishroad.services.QuestionsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +20,7 @@ public class RESTController {
 
     @GetMapping(path = "/questions")
     public List<Question> getQuestions(@RequestParam(value = "level", required = true) Integer levelIndex) {
-        return questionsService.getByLevel(levelIndex, 2);
+        return questionsService.getByLevelIndex(levelIndex, 0);
     }
 
 }

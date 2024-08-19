@@ -1,5 +1,6 @@
 package com.shurygin.englishroad.services;
 
+import com.shurygin.englishroad.model.Level;
 import com.shurygin.englishroad.model.Word;
 import com.shurygin.englishroad.repositories.WordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +20,8 @@ public class WordService {
         this.wordRepository = wordRepository;
     }
 
-    public List<Word> findByLevelId(Integer levelId) {
-        return wordRepository.findByLevelIndex(levelId);
+    public List<Word> findByLevelIndex(Integer levelIndex) {
+        return wordRepository.findByLevelIndex(levelIndex);
     }
 
 }

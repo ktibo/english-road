@@ -1,0 +1,11 @@
+spring.application.name=EnglishRoad
+# Data Source
+spring.datasource.driver-class-name=org.postgresql.Driver
+spring.datasource.url=jdbc:postgresql://localhost:6543/english_road
+spring.datasource.username=your_username
+spring.datasource.password=your_password
+# Hibernate config
+spring.jpa.properties.hibernate.default_schema=english_road
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+spring.jpa.properties.hibernate.show_sql=true
+spring.jpa.properties.hibernate.hbm2ddl.auto=update

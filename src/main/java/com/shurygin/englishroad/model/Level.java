@@ -12,12 +12,12 @@ import lombok.NoArgsConstructor;
 public class Level {
 
     @Id
-    @Column(name = "id")
     private final Integer id;
 
-    @Column(name = "name")
     @NotEmpty
     private final String name;
+
+    private final String description;
 
     @Column(name = "position_from")
     private final Integer positionFrom;
@@ -25,4 +25,9 @@ public class Level {
     @Column(name = "position_to")
     private final Integer positionTo;
 
+    public String getDescription() {
+        if (positionTo == 0)
+            return String.format("Слова от %d", positionFrom);
+        return String.format("Слова от %d до %d", positionFrom, positionTo);
+    }
 }
