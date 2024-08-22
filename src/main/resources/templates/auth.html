@@ -1,30 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" th:replace="base :: html">
 <body>
-<div th:fragment="content">
-    <main class="d-grid gap-2 col-4 py-4 mx-auto">
-        <form method="POST">
-            <h1 class="h4 mb-3 fw-normal">Введите данные для входа:</h1>
-            <div class="d-grid py-2 gap-2">
-                <input type="text" name="username" class="form-control" placeholder="Логин">
-                <input type="password" name="password" class="form-control" placeholder="Пароль">
-            </div>
-            <div class="d-grid py-3 gap-2">
-                <button class="btn btn-outline-primary py-2" type="submit" formaction="/auth/login">Войти</button>
-                <button class="btn btn-outline-primary py-2" type="submit" formaction="/auth/register">Зарегистрироваться</button>
-            </div>
-        </form>
+<main th:fragment="content" class="d-grid gap-2 col-8 col-md-5 col-lg-3 py-4 mx-auto">
 
-        <div th:if="${param['success-registration'] != null}">
-            Успешная регистрация!
+    <form method="POST">
+        <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+        <h1 class="h4 mb-3 fw-normal">Введите данные для входа:</h1>
+        <div class="d-grid py-2 gap-2">
+            <input type="text" name="username" class="form-control" placeholder="Логин">
+            <input type="password" name="password" class="form-control" placeholder="Пароль">
         </div>
-        <div th:if="${param['error-user-exists'] != null}">
-            Ошибка регистрации! Такой пользователь уже существует.
+        <div class="d-grid py-3 gap-2">
+            <button class="btn btn-outline-primary py-2" type="submit" formaction="/auth/login">Войти</button>
+            <button class="btn btn-outline-primary py-2" type="submit" formaction="/auth/register">Зарегистрироваться</button>
         </div>
-        <div th:if="${param['error'] != null}">
-            Вход не выполнен! Неверный логин или пароль.
-        </div>
-    </main>
-</div>
+    </form>
+
+    <div th:if="${param['success-registration'] != null}">
+        Успешная регистрация!
+    </div>
+    <div th:if="${param['error-user-exists'] != null}">
+        Ошибка регистрации! Такой пользователь уже существует.
+    </div>
+    <div th:if="${param['error'] != null}">
+        Вход не выполнен! Неверный логин или пароль.
+    </div>
+
+</main>
 </body>
 </html>

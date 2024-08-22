@@ -23,7 +23,8 @@ public class SecurityConfig {
                             //.requestMatchers("/game").hasRole("USER")
                             .anyRequest().permitAll();
                 })
-                .csrf(AbstractHttpConfigurer::disable) // отключаем защиту csrf
+//                .csrf(AbstractHttpConfigurer::disable)
+                .csrf(Customizer.withDefaults())
 //                .formLogin(Customizer.withDefaults())
                 .formLogin(form -> form
                         .loginPage("/auth")
@@ -33,7 +34,10 @@ public class SecurityConfig {
                 .httpBasic(Customizer.withDefaults())
                 .logout(logout -> logout
                         .logoutUrl("/auth/logout")
-                        .logoutSuccessUrl("/"))
+                        .logoutSuccessUrl("/")
+                        .invalidateHttpSession(true)
+                        .deleteCookies("JSESSIONID")
+                )
                 .build();
     }
 
