@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="base :: html">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{base :: html}">
 <body>
 <main th:fragment="content" class="d-grid gap-2 col-8 col-md-5 col-lg-3 py-4 mx-auto">
     <div class="py-3">
@@ -9,10 +9,10 @@
     <div class="container p-0">
         <div class="row d-flex justify-content-between align-items-center">
             <div class="col-auto">
-                <p id="counter" class="text-start fw-light m-0">2/10</p>
+                <p id="counter" class="text-start fw-light m-0"></p>
             </div>
             <div id="heart-container" class="col-auto text-end">
-                <template id="template">
+                <template id="lives-templates">
                     <img id="heart-template" th:src="@{/images/heart1.png}"/>
                     <img id="broken-heart-template" th:src="@{/images/heart2.png}"/>
                 </template>
@@ -21,10 +21,12 @@
     </div>
 
     <div id="options-container" class="d-grid py-2 gap-2">
-        <button id="button-template" class="btn btn-outline-primary" type="button"></button>
+        <template id="options-templates">
+            <button id="option-template" class="btn btn-outline-primary" type="button"></button>
+        </template>
     </div>
 
-    <div id="back-to-menu">
+    <div id="back-to-menu" style="visibility: hidden;">
         <a th:href="@{/}">Назад в меню</a>
     </div>
 

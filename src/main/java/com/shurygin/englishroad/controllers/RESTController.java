@@ -20,7 +20,7 @@ public class RESTController {
 
     @GetMapping(path = "/questions")
     public List<Question> getQuestions(@RequestParam(value = "level", required = true) Integer levelIndex) {
-        return questionsService.getByLevelIndex(levelIndex, 0);
+        return questionsService.getByLevelIndex(levelIndex);
     }
 
 }

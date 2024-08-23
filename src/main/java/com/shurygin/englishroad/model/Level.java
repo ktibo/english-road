@@ -25,9 +25,10 @@ public class Level {
     @Column(name = "position_to")
     private final Integer positionTo;
 
-    public String getDescription() {
-        if (positionTo == 0)
-            return String.format("Слова от %d", positionFrom);
-        return String.format("Слова от %d до %d", positionFrom, positionTo);
-    }
+//    public String getDescription() {
+//        if (positionTo == 0)
+//            return String.format("Слова от %d", positionFrom);
+//        return String.format("Слова от %d до %d", positionFrom, positionTo);
+//    }
+
 }

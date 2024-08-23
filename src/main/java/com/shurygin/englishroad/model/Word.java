@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Data
@@ -28,23 +29,13 @@ public class Word {
 
     private final String transcription;
 
-//    @OneToMany(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "word_name")
-//    @BatchSize(size = 1000)
-//    private List<Translation> translations;
-
     private String translations;
 
     @JsonIgnore
-    public String getRandomTranslation() {
-        List<String> translationsList = getTranslationsList();
-        if (translationsList.size() == 0) throw new RuntimeException("Word '" + name + "' has no translations!");
-        return translationsList.get((int) (Math.random() * translationsList.size()));
-    }
-
-    @JsonIgnore
     public List<String> getTranslationsList() {
-        return List.of(translations.split(","));
+        return Arrays.stream(translations.split(","))
+                .map(String::trim)
+                .toList();
     }
 
 }

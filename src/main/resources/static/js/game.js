@@ -6,10 +6,11 @@ const wordElement = document.getElementById('word');
 const transcriptionElement = document.getElementById('transcription');
 const optionsContainer = document.getElementById('options-container');
 const heartContainer = document.getElementById('heart-container');
-const buttonTemplate = document.getElementById('button-template');
-const templateContent = document.getElementById('template').content;
-const heartTemplate = templateContent.getElementById('heart-template');
-const brokenHeartTemplate = templateContent.getElementById('broken-heart-template');
+const optionTemplate = document.getElementById('options-templates')
+    .content.getElementById('option-template');
+const livesTemplateContent = document.getElementById('lives-templates').content;
+const heartTemplate = livesTemplateContent.getElementById('heart-template');
+const brokenHeartTemplate = livesTemplateContent.getElementById('broken-heart-template');
 const counter = document.getElementById('counter');
 let currentIndex = 0;
 let attempts = 3;
@@ -51,7 +52,7 @@ const fillNextQuestion = () => {
     transcriptionElement.textContent = question.word.transcription;
 
     question.options.forEach(option => {
-        const button = buttonTemplate.cloneNode(true);
+        const button = optionTemplate.cloneNode(true);
         button.textContent = option;
         button.style.display = 'inline-block';
         button.addEventListener('click', () => chooseOption(option === question.correctOption, button));
@@ -66,6 +67,9 @@ const finishGame = () => {
         }
         btn.disabled = true;
     });
+
+    document.getElementById("back-to-menu").style.visibility = "visible";
+
 };
 
 const fetchQuestions = async () => {

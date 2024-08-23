@@ -1,10 +1,8 @@
 package com.shurygin.englishroad.dto;
 
-import com.shurygin.englishroad.model.Translation;
 import com.shurygin.englishroad.model.Word;
 import lombok.Data;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
