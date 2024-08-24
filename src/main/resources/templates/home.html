@@ -9,11 +9,12 @@
         <div class="container text-center">
             <div class="row justify-content-md-center">
                 <div class="col-lg-2" th:each="level : ${levels}">
-                    <a th:href="@{/game?level={id}(id=${level.getId()})}">
+                    <a th:href="${securityManager.isLevelAllowed(level)} ? @{/game?level={id}(id=${level.getId()})} : @{#}">
                         <img th:src="@{/images/difficulty_levels/level{id}.png (id = ${level.getId()})}"/>
                         <h4 class="fw-normal" th:text="${level.getName()}">Name</h4>
                     </a>
-                    <p th:text="${level.getDescription()}">Description</p>
+                    <p th:if="${securityManager.isLevelAllowed(level)}" th:text="${level.getDescription()}">Description</p>
+                    <p th:if="${!securityManager.isLevelAllowed(level)}">Необходимо зарегистрироваться</p>
                 </div>
             </div>
         </div>
