@@ -17,7 +17,7 @@
                 <div class="container-fluid justify-content-center align-items-center gap-3">
                     <a th:href="@{/}" class="navbar-brand h3 m-0">English Road!</a>
                     <form th:if="${hasAuthPath != null && !hasAuthPath && !isAuthenticated}" method="GET" th:action="@{/auth}">
-                        <button class="btn btn-sm btn-outline-secondary" type="submit">Авторизоваться</button>
+                        <button class="btn btn-sm btn-outline-secondary" type="submit">Войти</button>
                     </form>
                     <form th:if="${isAuthenticated != null && isAuthenticated}" method="POST" th:action="@{/auth/logout}">
                         <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
