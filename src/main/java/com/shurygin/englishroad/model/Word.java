@@ -5,9 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,6 +13,7 @@ import java.util.List;
 @Data
 @Entity
 @NoArgsConstructor(force = true)
+@RequiredArgsConstructor
 @Table(name = "words")
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Word {
@@ -29,7 +28,7 @@ public class Word {
 
     private final String transcription;
 
-    private String translations;
+    private final String translations;
 
     @JsonIgnore
     public List<String> getTranslationsList() {

@@ -16,10 +16,10 @@ import java.util.List;
 public class QuestionsCreator {
 
     @Value("${questions.number_of_questions_per_round}")
-    private int number_of_questions_per_round;
+    private int number_of_questions_per_round = 20;
 
     @Value("${questions.number_of_options}")
-    private int number_of_options;
+    private int number_of_options = 4;
 
     public List<Question> createQuestions (List<Word> words) {
 

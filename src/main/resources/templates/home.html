@@ -14,7 +14,7 @@
                         <h4 class="fw-normal" th:text="${level.getName()}">Name</h4>
                     </a>
                     <p th:if="${securityManager.isLevelAllowed(level)}" th:text="${level.getDescription()}">Description</p>
-                    <p th:if="${!securityManager.isLevelAllowed(level)}">Необходимо зарегистрироваться</p>
+                    <p th:if="${!securityManager.isLevelAllowed(level)}">необходимо зарегистрироваться</p>
                 </div>
             </div>
         </div>
