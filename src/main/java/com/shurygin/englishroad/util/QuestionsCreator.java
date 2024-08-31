@@ -2,7 +2,6 @@ package com.shurygin.englishroad.util;
 
 import com.shurygin.englishroad.dto.Question;
 import com.shurygin.englishroad.model.Word;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
@@ -22,6 +21,9 @@ public class QuestionsCreator {
     private int number_of_options = 4;
 
     public List<Question> createQuestions (List<Word> words) {
+
+        if (words.size() < number_of_questions_per_round)
+            throw new RuntimeException("Not enough words!");
 
         Collections.shuffle(words);
 
