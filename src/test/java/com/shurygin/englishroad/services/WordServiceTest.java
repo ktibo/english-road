@@ -54,7 +54,6 @@ class WordServiceTest {
 
         // Проверяем
         assertTrue(result.isEmpty());
-
         verify(wordRepository, times(1)).findByLevelIndex(levelIndex);
 
     }

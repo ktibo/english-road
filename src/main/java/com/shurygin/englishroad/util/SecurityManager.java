@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 public class SecurityManager {
 
     @Value("${security.max_level_no_auth}")
-    private int max_level_no_auth;
+    private int max_level_no_auth = 3;
 
     Authentication authentication;
 
