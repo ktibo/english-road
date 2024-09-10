@@ -14,6 +14,7 @@ public class GlobalControllerAdvice {
 
     private final SecurityManager securityManager;
 
+
     @Autowired
     public GlobalControllerAdvice(SecurityManager securityManager) {
         this.securityManager = securityManager;

@@ -1,5 +1,6 @@
 package com.shurygin.englishroad.controllers;
 
+import com.shurygin.englishroad.Hints;
 import com.shurygin.englishroad.util.SecurityManager;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,16 +22,17 @@ public class GameController {
     @GetMapping
     public String showGamePage(Model model,
                                @RequestParam(value = "level", required = true) Integer levelIndex,
-                               HttpServletResponse response,
-                               @CookieValue(value = "currentQuestionIndex", defaultValue = "0") String currentQuestionIndex){
+                               HttpServletResponse response
+//                               @CookieValue(value = "currentQuestionIndex", defaultValue = "0") String currentQuestionIndex
+    ){
+        if (!securityManager.isLevelAllowed(levelIndex)) return "error";
 
-//        Cookie cookie = new Cookie("currentQuestionIndex", currentQuestionIndex);
+//        Cookie cookie = new Cookie("hints", "1");
 //        cookie.setMaxAge(7 * 24 * 60 * 60);
 //        response.addCookie(cookie);
 
-        if (!securityManager.isLevelAllowed(levelIndex)) return "error";
-
         model.addAttribute("titleAppender", " · level "+levelIndex);
+        model.addAttribute("hints", Hints.values());
         return "game";
     }
 

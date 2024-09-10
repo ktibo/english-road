@@ -26,6 +26,19 @@
         </template>
     </div>
 
+    <div id="hints-container" class="row d-flex justify-content-center align-items-center p-3">
+        <div th:each="hint : ${hints}" th:id="${hint.getId()}" class="col-auto"
+             data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top" th:data-bs-title="${hint.getDescription()}">
+                <button th:id="${'button-'+hint.getId()}"
+                        onclick="spendHint(this)"
+                        type="button"
+                        class="btn"
+                        style="border: none; background: none; padding: 0; cursor: pointer;">
+                    <img th:src="@{/images/hints/{id}.png (id = ${hint.getId()})}"/>
+                </button>
+        </div>
+    </div>
+
     <div id="back-to-menu" style="visibility: hidden;">
         <a th:href="@{/}">Назад в меню</a>
     </div>

@@ -1,6 +1,7 @@
 package com.shurygin.englishroad.util;
 
 import com.shurygin.englishroad.model.Level;
+import com.shurygin.englishroad.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -19,18 +20,29 @@ public class SecurityManager {
     Authentication authentication;
 
     public boolean isAuthenticated() {
-        authentication = SecurityContextHolder.getContext().getAuthentication();
+        refreshAuthentication();
         return authentication != null
                 && authentication.isAuthenticated()
                 && !(authentication instanceof AnonymousAuthenticationToken);
     }
 
+    private void refreshAuthentication() {
+        authentication = SecurityContextHolder.getContext().getAuthentication();
+    }
+
     public boolean isLevelAllowed(Level level) {
-        return level.getId() <= max_level_no_auth || isAuthenticated();
+        return isLevelAllowed(level.getId());
     }
 
     public boolean isLevelAllowed(Integer levelIndex) {
         return levelIndex <= max_level_no_auth || isAuthenticated();
+    }
+
+    public User getCurrentUser(){
+        if (isAuthenticated()) {
+            return (User) authentication.getPrincipal();
+        }
+        return null;
     }
 
 }

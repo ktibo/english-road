@@ -17,6 +17,7 @@ import java.util.List;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
 
 @WebMvcTest(HomeController.class)
 @AutoConfigureMockMvc(addFilters = false) // Отрубаем security
@@ -39,7 +40,7 @@ class HomeControllerTest {
         when(levelRepository.findAll(Sort.by("id"))).thenReturn(mockLevels);
 
         // Проверяем
-        mockMvc.perform(get("/"))
+        mockMvc.perform(get("/").with(SecurityMockMvcRequestPostProcessors.csrf()))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("levels", mockLevels));
 
@@ -48,7 +49,7 @@ class HomeControllerTest {
     @Test
     void showHomePage() throws Exception {
 
-        mockMvc.perform(get("/"))
+        mockMvc.perform(get("/").with(SecurityMockMvcRequestPostProcessors.csrf()))
                 .andExpect(status().isOk())
                 .andExpect(view().name("home"))
                 .andExpect(model().attributeExists("levels"));

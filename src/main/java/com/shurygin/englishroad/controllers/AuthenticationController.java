@@ -35,7 +35,8 @@ public class AuthenticationController {
         if (byUsername.isPresent()) { // user already exists
             return "redirect:/auth?error-user-exists";
         }
-        userRepo.save(new User(user.getUsername(), passwordEncoder.encode(user.getPassword())));
+        User newUser = new User(user.getUsername(), passwordEncoder.encode(user.getPassword()));
+        userRepo.save(newUser);
         return "redirect:/auth?success-registration";
     }
 
